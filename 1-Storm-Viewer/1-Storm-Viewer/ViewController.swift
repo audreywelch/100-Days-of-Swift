@@ -51,6 +51,19 @@ class ViewController: UITableViewController {
         return cell
         
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Try loading the "Detail" view controller (storyboard ID) & typecasting it to be the DetailViewController
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            
+            // Set image
+            viewController.selectedImage = pictures[indexPath.row]
+            
+            // Push onto the navigation controller
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 
 
 }
