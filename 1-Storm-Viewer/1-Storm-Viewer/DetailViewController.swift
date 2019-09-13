@@ -16,11 +16,30 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = selectedImage
+        
+        // Large titles only in the first view controller
+        navigationItem.largeTitleDisplayMode = .never
 
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Tap to see a picture full size / hide the navigation bar
+        navigationController?.hidesBarsOnTap = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Only hide the navigation bar on tapping in the DetailView
+        navigationController?.hidesBarsOnTap = false
     }
     
 
