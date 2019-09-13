@@ -36,7 +36,7 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-        
+        pictures = pictures.sorted()
         print(pictures)
     }
     
@@ -59,13 +59,19 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Try loading the "Detail" view controller (storyboard ID) & typecasting it to be the DetailViewController
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+        if let detailViewController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             
             // Set image
-            viewController.selectedImage = pictures[indexPath.row]
+            detailViewController.selectedImage = pictures[indexPath.row]
+            
+            // Set image number
+            detailViewController.selectedPictureNumber = indexPath.row + 1
+            
+            // Set number of images
+            detailViewController.totalPictures = pictures.count
             
             // Push onto the navigation controller
-            navigationController?.pushViewController(viewController, animated: true)
+            navigationController?.pushViewController(detailViewController, animated: true)
         }
     }
 
