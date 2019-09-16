@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     // Holds the score
     var score = 0
     
+    var numberOfQuestionsAsked = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
+        
         var title: String
         
         // If the button's tag matches the correct answer, display "Correct"
@@ -79,9 +82,20 @@ class ViewController: UIViewController {
         }
         
         // Add alert for the user's answer and the score
-        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        present(ac, animated: true)
+        if numberOfQuestionsAsked < 10 {
+            let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+        } else if numberOfQuestionsAsked == 10 {
+            let ac = UIAlertController(title: "Game Complete", message: "Final Score: \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Play again!", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+            
+            score = 0
+            numberOfQuestionsAsked = 0
+        }
+        
+        numberOfQuestionsAsked += 1
         
     }
     
