@@ -59,12 +59,23 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
+        // If the button's tag matches the correct answer, display "Correct"
         if sender.tag == correctAnswer {
             title = "Correct"
             score += 1
+            
+        // If the do not match, display the answer
         } else {
-            title = "Wrong"
-            score -= 1
+            // If the country has only 2 letters, capitalize the entire string
+            if countries[sender.tag].count == 2 {
+                title = "Wrong. That's the flag of the \(countries[sender.tag].uppercased())."
+                
+            // Otherwise, only capitalize the first letter in the string
+            } else {
+                title = "Wrong. That's the flag of \(countries[sender.tag].capitalizingFirstLetter())."
+                score -= 1
+            }
+            
         }
         
         // Add alert for the user's answer and the score
@@ -75,5 +86,15 @@ class ViewController: UIViewController {
     }
     
 
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }
 
