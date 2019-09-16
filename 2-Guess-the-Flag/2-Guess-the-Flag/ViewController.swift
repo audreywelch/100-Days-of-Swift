@@ -15,28 +15,45 @@ class ViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     
     var countries: [String] = []
+    
+    // Holds whether flag 0, 1, or 2 holds the correct answer
+    var correctAnswer = 0
+    
+    // Holds the score
     var score = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add border
         button1.layer.borderWidth = 1
         button2.layer.borderWidth = 1
         button3.layer.borderWidth = 1
         
+        // Add border color
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
+        // Add country names to the array
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
         
         askQuestion()
     }
     
     func askQuestion() {
+        
+        // Shuffle array so that the first 3 flags will always be different
+        countries.shuffle()
+        
+        // Display images of flags on the buttons
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
+        
+        correctAnswer = Int.random(in: 0...2)
+        
+        title = countries[correctAnswer].uppercased()
     }
 
 
