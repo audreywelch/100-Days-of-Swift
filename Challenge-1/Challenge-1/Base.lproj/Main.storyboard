@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Jy3-NK-Yja" kind="show" id="JTB-O4-LaH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,6 +50,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3j5-wR-BW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="85.714285714285708"/>
+        </scene>
+        <!--Flag Detail View Controller-->
+        <scene sceneID="3a6-Ea-viS">
+            <objects>
+                <viewController id="Jy3-NK-Yja" customClass="FlagDetailViewController" customModule="Challenge_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GWB-hR-nqU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eF5-vF-t4l">
+                                <rect key="frame" x="87" y="104" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eF5-vF-t4l" firstAttribute="centerX" secondItem="GWB-hR-nqU" secondAttribute="centerX" id="biT-7e-Y62"/>
+                            <constraint firstItem="eF5-vF-t4l" firstAttribute="top" secondItem="gdE-bL-eey" secondAttribute="top" constant="20" id="p6a-aT-1yY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gdE-bL-eey"/>
+                    </view>
+                    <connections>
+                        <outlet property="flagImageView" destination="eF5-vF-t4l" id="nKp-GR-phR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="naz-ad-oMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1924.6376811594205" y="85.714285714285708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FIC-7l-clM">

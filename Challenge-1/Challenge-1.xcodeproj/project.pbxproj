@@ -12,6 +12,7 @@
 		84770A0D2332C5BA00FFE238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84770A0C2332C5BA00FFE238 /* Assets.xcassets */; };
 		84770A102332C5BB00FFE238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84770A0E2332C5BB00FFE238 /* LaunchScreen.storyboard */; };
 		84770A182332C61E00FFE238 /* FlagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84770A172332C61E00FFE238 /* FlagsTableViewController.swift */; };
+		84770A1A2332C98700FFE238 /* FlagDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84770A192332C98700FFE238 /* FlagDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		84770A0F2332C5BB00FFE238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84770A112332C5BB00FFE238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84770A172332C61E00FFE238 /* FlagsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagsTableViewController.swift; sourceTree = "<group>"; };
+		84770A192332C98700FFE238 /* FlagDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				84770A172332C61E00FFE238 /* FlagsTableViewController.swift */,
+				84770A192332C98700FFE238 /* FlagDetailViewController.swift */,
 				84770A052332C5BA00FFE238 /* AppDelegate.swift */,
 				84770A0C2332C5BA00FFE238 /* Assets.xcassets */,
 				84770A092332C5BA00FFE238 /* Main.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				84770A062332C5BA00FFE238 /* AppDelegate.swift in Sources */,
 				84770A182332C61E00FFE238 /* FlagsTableViewController.swift in Sources */,
+				84770A1A2332C98700FFE238 /* FlagDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
