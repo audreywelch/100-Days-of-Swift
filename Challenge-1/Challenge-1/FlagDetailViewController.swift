@@ -36,7 +36,7 @@ class FlagDetailViewController: UIViewController {
         }
         
         // Create a UIActivityViewController
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        let vc = UIActivityViewController(activityItems: [image, selectedFlag], applicationActivities: [])
         
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
