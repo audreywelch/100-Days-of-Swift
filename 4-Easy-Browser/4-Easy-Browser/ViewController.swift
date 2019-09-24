@@ -30,6 +30,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        
+        // Create an array containing the flexible space and the refresh button and set it to the view controller's toolbarItems array
+        toolbarItems = [spacer, refresh]
+        navigationController?.isToolbarHidden = false
+        
         // Create a URL
         let url = URL(string: "https://lambdaschool.com/lambda-students/audrey-welch")!
         
