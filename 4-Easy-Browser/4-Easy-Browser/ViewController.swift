@@ -15,6 +15,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     var progressView: UIProgressView!
     
+    //var websites = ["https://lambdaschool.com/lambda-students/audrey-welch", "https://www.linkedin.com/in/audrey-welch-ios/"]
+    var websites = ["apple.com", "hackingwithswift.com"]
+    
     override func loadView() {
         
         // Create a new instance of WKWebView web browser and assign to webView property
@@ -53,7 +56,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         navigationController?.isToolbarHidden = false
         
         // Create a URL
-        let url = URL(string: "https://lambdaschool.com/lambda-students/audrey-welch")!
+        let url = URL(string: "https://" + websites[0])!
         
         // Create a new URLRequest object from the URL and give it to the webView to laod
         webView.load(URLRequest(url: url))
@@ -73,8 +76,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         let ac = UIAlertController(title: "Open page...", message: nil, preferredStyle: .actionSheet)
         
-        ac.addAction(UIAlertAction(title: "Showcase", style: .default, handler: openPage))
-        ac.addAction(UIAlertAction(title: "LinkedIn", style: .default, handler: openPage))
+        // Alternative to the below individual adds, but I don't want to display the whole website url because it's too long
+        for website in websites {
+            ac.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
+        }
+        
+//        ac.addAction(UIAlertAction(title: "Showcase", style: .default, handler: openPage))
+//        ac.addAction(UIAlertAction(title: "LinkedIn", style: .default, handler: openPage))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         ac.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
@@ -84,21 +92,48 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     func openPage(action: UIAlertAction) {
-        //let url = URL(string: "https://" + action.title!)!
         
-        if action.title == "Showcase" {
-            let url = URL(string: "https://lambdaschool.com/lambda-students/audrey-welch")!
-            webView.load(URLRequest(url: url))
-        } else if action.title == "LinkedIn" {
-            let url = URL(string: "https://www.linkedin.com/in/audrey-welch-ios/")!
-            webView.load(URLRequest(url: url))
-        }
+        let url = URL(string: "https://" + action.title!)!
+        
+        webView.load(URLRequest(url: url))
+        
+//        if action.title == "Showcase" {
+//            let url = URL(string: "https://lambdaschool.com/lambda-students/audrey-welch")!
+//            webView.load(URLRequest(url: url))
+//        } else if action.title == "LinkedIn" {
+//            let url = URL(string: "https://www.linkedin.com/in/audrey-welch-ios/")!
+//            webView.load(URLRequest(url: url))
+//        }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
-
-
+    
+    // Decide whether we want to allow navigation to happen or not each time something happens
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        // @escaping acknowledges that the closure might be used later
+        // Evaluate URL that users click on to see if it's safe, then call decisionHandler with a negative or positive answer
+        
+        // Set constant url to be equal to the URL of the navigation
+        let url = navigationAction.request.url
+        
+        // Unwrap the value of the optional url.host
+        if let host = url?.host {
+            // Loop through all sites on our safe list, placing the name of the site in the website variable
+            for website in websites {
+                // See whether each safe website exists somewhere in the host name
+                if host.contains(website) {
+                    // If website was found, call the decision handler with a positive response - allow loading
+                    decisionHandler(.allow)
+                    // Exit the method
+                    return
+                }
+            }
+        }
+        // If no host set, or if we've gone through all the loop and found nothing, we call the decision handler with a negative response - cancel loading
+        decisionHandler(.cancel)
+    }
 }
 
