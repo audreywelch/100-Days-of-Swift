@@ -13,6 +13,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
     
+    var progressView: UIProgressView!
+    
     override func loadView() {
         
         // Create a new instance of WKWebView web browser and assign to webView property
@@ -28,13 +30,26 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add a Key Value Observer
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         
+        // Create a UIProgressView instance with the default style
+        progressView = UIProgressView(progressViewStyle: .default)
+        
+        // Tell progress view to set its layout size so that it fits its contents fully
+        progressView.sizeToFit()
+        
+        // Create a new bar button item using the customView parameter, to wrap the progress view into a bar button item so that it can go inside the toolbar
+        let progressButton = UIBarButtonItem(customView: progressView)
+        
+        // Flexible space takes up as much room as it can on the left
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
         // Create an array containing the flexible space and the refresh button and set it to the view controller's toolbarItems array
-        toolbarItems = [spacer, refresh]
+        toolbarItems = [progressButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
         
         // Create a URL
@@ -46,6 +61,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // Enable a property on web view that allows users to swipe from left or right edge to move backward or forward in their web browsing
         webView.allowsBackForwardNavigationGestures = true
         
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            progressView.progress = Float(webView.estimatedProgress)
+        }
     }
     
     @objc func openTapped() {
