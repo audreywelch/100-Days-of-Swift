@@ -18,6 +18,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        
         // Find the file path
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // Load file into a string
@@ -46,9 +48,31 @@ class TableViewController: UITableViewController {
     }
 
     func startGame() {
-        self.title = allWords.randomElement()
+        title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+    
+    @objc func promptForAnswer() {
+        
+        let ac = UIAlertController(title: "Enter Answer", message: nil, preferredStyle: .alert)
+        
+        // Add a single text field to the controller
+        ac.addTextField()
+        
+        // Trailing Closure Syntax: Give the UIAlertAction some code to execute when it is tapped, and it wants to know that that code accepts a parameter of type UIAlertAction
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] _ in
+            // Read the value that was inserted into the text field
+            guard let answer = ac?.textFields?[0].text else { return }
+            self?.submit(answer)
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    func submit(_ answer: String) {
+        
     }
 
 }
