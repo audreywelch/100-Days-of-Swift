@@ -13,6 +13,7 @@
 		84B87739233D442A00D41443 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B87737233D442A00D41443 /* Main.storyboard */; };
 		84B8773B233D442D00D41443 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B8773A233D442D00D41443 /* Assets.xcassets */; };
 		84B8773E233D442D00D41443 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B8773C233D442D00D41443 /* LaunchScreen.storyboard */; };
+		84B87746233D457100D41443 /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84B87745233D457100D41443 /* start.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		84B8773A233D442D00D41443 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84B8773D233D442D00D41443 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B8773F233D442D00D41443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B87745233D457100D41443 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		84B87730233D442A00D41443 /* 5-Word-Scramble */ = {
 			isa = PBXGroup;
 			children = (
-				84B87731233D442A00D41443 /* AppDelegate.swift */,
-				84B87733233D442A00D41443 /* SceneDelegate.swift */,
-				84B87735233D442A00D41443 /* ViewController.swift */,
-				84B87737233D442A00D41443 /* Main.storyboard */,
-				84B8773A233D442D00D41443 /* Assets.xcassets */,
-				84B8773C233D442D00D41443 /* LaunchScreen.storyboard */,
-				84B8773F233D442D00D41443 /* Info.plist */,
+				84B87749233D459900D41443 /* Storyboards */,
+				84B87748233D458E00D41443 /* View Controllers */,
+				84B87747233D457E00D41443 /* Delegate Files */,
+				84B8774A233D45A400D41443 /* Resources */,
 			);
 			path = "5-Word-Scramble";
+			sourceTree = "<group>";
+		};
+		84B87747233D457E00D41443 /* Delegate Files */ = {
+			isa = PBXGroup;
+			children = (
+				84B87731233D442A00D41443 /* AppDelegate.swift */,
+				84B87733233D442A00D41443 /* SceneDelegate.swift */,
+			);
+			path = "Delegate Files";
+			sourceTree = "<group>";
+		};
+		84B87748233D458E00D41443 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				84B87735233D442A00D41443 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		84B87749233D459900D41443 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				84B87737233D442A00D41443 /* Main.storyboard */,
+				84B8773C233D442D00D41443 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		84B8774A233D45A400D41443 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84B8773A233D442D00D41443 /* Assets.xcassets */,
+				84B87745233D457100D41443 /* start.txt */,
+				84B8773F233D442D00D41443 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B8773E233D442D00D41443 /* LaunchScreen.storyboard in Resources */,
+				84B87746233D457100D41443 /* start.txt in Resources */,
 				84B8773B233D442D00D41443 /* Assets.xcassets in Resources */,
 				84B87739233D442A00D41443 /* Main.storyboard in Resources */,
 			);
@@ -286,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BH59G2VDQ6;
-				INFOPLIST_FILE = "5-Word-Scramble/Info.plist";
+				INFOPLIST_FILE = "5-Word-Scramble/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BH59G2VDQ6;
-				INFOPLIST_FILE = "5-Word-Scramble/Info.plist";
+				INFOPLIST_FILE = "5-Word-Scramble/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
