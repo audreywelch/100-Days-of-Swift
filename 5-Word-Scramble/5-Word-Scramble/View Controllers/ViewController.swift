@@ -91,15 +91,33 @@ class TableViewController: UITableViewController {
     // MARK: - Word Check Methods
     
     func isPossible(word: String) -> Bool {
+        
+        guard var tempWord = title?.lowercased() else { return false }
+        
+        // If the letter is found in the string, remove the used letter from the tempWord variable
+        for letter in word {
+            // firstIndex(of:) returns the first position of the substring if it exists
+            if let position = tempWord.firstIndex(of: letter) {
+                tempWord.remove(at: position)
+            } else {
+                return false
+            }
+        }
+        
         return true
     }
     
     func isOriginal(word: String) -> Bool {
-        return true
+        return !usedWords.contains(word)
     }
     
     func isReal(word: String) -> Bool {
-        return true
+        
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        return misspelledRange.location == NSNotFound
     }
 
 }
