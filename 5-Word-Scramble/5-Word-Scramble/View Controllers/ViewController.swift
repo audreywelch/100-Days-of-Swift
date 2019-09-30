@@ -77,13 +77,10 @@ class TableViewController: UITableViewController {
         
         let lowerAnswer = answer.lowercased()
         
-        let errorTitle: String
-        let errorMessage: String
-        
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
+                    usedWords.insert(lowerAnswer, at: 0)
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
@@ -129,6 +126,7 @@ class TableViewController: UITableViewController {
     }
     
     func isOriginal(word: String) -> Bool {
+    
         return !usedWords.contains(word)
     }
     
