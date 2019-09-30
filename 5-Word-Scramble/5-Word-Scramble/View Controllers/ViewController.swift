@@ -20,6 +20,8 @@ class TableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startGame))
+        
         // Find the file path
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // Load file into a string
@@ -47,7 +49,7 @@ class TableViewController: UITableViewController {
         return cell
     }
 
-    func startGame() {
+    @objc func startGame() {
         title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
@@ -88,23 +90,23 @@ class TableViewController: UITableViewController {
                     
                     return
                 } else {
-                    errorTitle = "Word not recognized"
-                    errorMessage = "You can't just make them up, you know!"
+                    showErrorMessage(errorTitle: "Word not recognized", errorMessage: "Make sure to use an actual word. It can't be the same as the starting word, and it needs to be at least 3 letters!")
                 }
             } else {
-                errorTitle = "Word used already"
-                errorMessage = "Be more original!"
+                showErrorMessage(errorTitle: "Word used already", errorMessage: "Be more original!")
             }
         } else {
             guard let title = title?.lowercased() else { return }
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title)."
+            
+            showErrorMessage(errorTitle: "Word not possible", errorMessage: "You can't spell that word from \(title).")
         }
+    }
+    
+    func showErrorMessage(errorTitle: String, errorMessage: String) {
         
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
-        
     }
     
     // MARK: - Word Check Methods
@@ -132,11 +134,25 @@ class TableViewController: UITableViewController {
     
     func isReal(word: String) -> Bool {
         
-        let checker = UITextChecker()
-        let range = NSRange(location: 0, length: word.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        guard let startWord = title?.lowercased() else { return false }
         
-        return misspelledRange.location == NSNotFound
+        // Disallow answers shorter than 3 letters
+        if word.count < 3 {
+            return false
+            
+        // Disallow answers that are the same as the starting word
+        } else if word == startWord {
+            return false
+            
+        // Check for misspellings
+        } else {
+            
+            let checker = UITextChecker()
+            let range = NSRange(location: 0, length: word.utf16.count)
+            let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+            
+            return misspelledRange.location == NSNotFound
+        }
     }
 
 }
