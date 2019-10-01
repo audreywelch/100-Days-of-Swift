@@ -62,9 +62,14 @@ class ViewController: UIViewController {
         // - = space
         for label in viewsDictionary.keys {
             
+            let metrics = ["labelHeight": 88]
+            
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
             
-            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
+            // Bottom Edge constraint: bottom f last label must be at least 10 points away from bottom of VC.
+            // Height constraint: 88 points tall
+            // Label Height Priority = 999, then all other labels adopt the same height as the first label
+            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]->=10-|", options: [], metrics: metrics, views: viewsDictionary))
         }
         
     }
