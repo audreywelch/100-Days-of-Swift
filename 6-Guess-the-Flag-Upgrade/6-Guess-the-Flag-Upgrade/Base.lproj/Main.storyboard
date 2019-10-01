@@ -20,6 +20,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="TvC-kd-605"/>
                                     <constraint firstAttribute="height" constant="100" id="jcu-Jr-LxQ"/>
+                                    <constraint firstAttribute="width" secondItem="iOb-sw-gqk" secondAttribute="height" multiplier="2:1" id="wwk-ly-tlg"/>
                                 </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -29,6 +30,7 @@
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ER3-Zd-Vzq">
                                 <rect key="frame" x="107" y="230" width="200" height="100"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="ER3-Zd-Vzq" secondAttribute="height" multiplier="2:1" id="NDC-QL-VJm"/>
                                     <constraint firstAttribute="height" constant="100" id="maO-mb-HjM"/>
                                     <constraint firstAttribute="width" constant="200" id="pBH-he-8Zo"/>
                                 </constraints>
@@ -42,6 +44,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="d3k-Zw-JAe"/>
                                     <constraint firstAttribute="width" constant="200" id="fub-5T-zWe"/>
+                                    <constraint firstAttribute="width" secondItem="4a6-OY-gT5" secondAttribute="height" multiplier="2:1" id="hRX-jX-ySw"/>
                                 </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -56,7 +59,10 @@
                             <constraint firstItem="4a6-OY-gT5" firstAttribute="top" secondItem="ER3-Zd-Vzq" secondAttribute="bottom" constant="30" id="GLl-wO-obz"/>
                             <constraint firstItem="iOb-sw-gqk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="Ge5-ng-ELI"/>
                             <constraint firstItem="ER3-Zd-Vzq" firstAttribute="centerX" secondItem="iOb-sw-gqk" secondAttribute="centerX" id="Gl6-PX-UyA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4a6-OY-gT5" secondAttribute="bottom" constant="20" id="Gmi-zy-rP1"/>
+                            <constraint firstItem="4a6-OY-gT5" firstAttribute="height" secondItem="ER3-Zd-Vzq" secondAttribute="height" id="VjC-v7-p8e"/>
                             <constraint firstItem="4a6-OY-gT5" firstAttribute="centerX" secondItem="ER3-Zd-Vzq" secondAttribute="centerX" id="pIl-kA-88R"/>
+                            <constraint firstItem="ER3-Zd-Vzq" firstAttribute="height" secondItem="iOb-sw-gqk" secondAttribute="height" id="sRN-Rc-Rng"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
