@@ -8,23 +8,32 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class ViewController: UITableViewController {
     
     var petitions: [Petition] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
-        // backup: "https://www.hackingwithswift.com/samples/petitions-1.json"
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+            // backup: "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
         
         // Make sure the URL is valid
         if let url = URL(string: urlString) {
             // Create a new Data object using its contentsOf method to return the content from the URL
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
+                return
             }
         }
+        
+        showError()
     }
     
     func parse(json: Data) {
@@ -34,6 +43,12 @@ class TableViewController: UITableViewController {
             petitions = jsonPetitions.results
             tableView.reloadData()
         }
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
