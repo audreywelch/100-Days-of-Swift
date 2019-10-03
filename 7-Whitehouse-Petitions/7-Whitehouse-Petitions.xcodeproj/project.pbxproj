@@ -14,6 +14,7 @@
 		84F10B5023468BBC002A2EF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F10B4F23468BBC002A2EF0 /* Assets.xcassets */; };
 		84F10B5323468BBC002A2EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F10B5123468BBC002A2EF0 /* LaunchScreen.storyboard */; };
 		84F10B5B23468E2C002A2EF0 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F10B5A23468E2C002A2EF0 /* Petition.swift */; };
+		84F10B5D234692B1002A2EF0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F10B5C234692B1002A2EF0 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		84F10B5223468BBC002A2EF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F10B5423468BBC002A2EF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F10B5A23468E2C002A2EF0 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
+		84F10B5C234692B1002A2EF0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +60,13 @@
 		84F10B4523468BB8002A2EF0 /* 7-Whitehouse-Petitions */ = {
 			isa = PBXGroup;
 			children = (
+				84F10B4C23468BB8002A2EF0 /* Main.storyboard */,
+				84F10B5A23468E2C002A2EF0 /* Petition.swift */,
+				84F10B4A23468BB8002A2EF0 /* TableViewController.swift */,
+				84F10B5C234692B1002A2EF0 /* DetailViewController.swift */,
+				84F10B4F23468BBC002A2EF0 /* Assets.xcassets */,
 				84F10B4623468BB8002A2EF0 /* AppDelegate.swift */,
 				84F10B4823468BB8002A2EF0 /* SceneDelegate.swift */,
-				84F10B4A23468BB8002A2EF0 /* TableViewController.swift */,
-				84F10B5A23468E2C002A2EF0 /* Petition.swift */,
-				84F10B4C23468BB8002A2EF0 /* Main.storyboard */,
-				84F10B4F23468BBC002A2EF0 /* Assets.xcassets */,
 				84F10B5123468BBC002A2EF0 /* LaunchScreen.storyboard */,
 				84F10B5423468BBC002A2EF0 /* Info.plist */,
 			);
@@ -143,6 +146,7 @@
 			files = (
 				84F10B4B23468BB8002A2EF0 /* TableViewController.swift in Sources */,
 				84F10B5B23468E2C002A2EF0 /* Petition.swift in Sources */,
+				84F10B5D234692B1002A2EF0 /* DetailViewController.swift in Sources */,
 				84F10B4723468BB8002A2EF0 /* AppDelegate.swift in Sources */,
 				84F10B4923468BB8002A2EF0 /* SceneDelegate.swift in Sources */,
 			);
