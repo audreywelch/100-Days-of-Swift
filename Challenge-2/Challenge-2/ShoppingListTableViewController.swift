@@ -15,6 +15,9 @@ class ShoppingListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Shopping List"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         // Add right bar button item
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTextField))
         
@@ -40,7 +43,8 @@ class ShoppingListTableViewController: UITableViewController {
     }
     
     @objc func clearShoppingList() {
-        
+        shoppingList = []
+        tableView.reloadData()
     }
     
     func submit(_ newItem: String) {
