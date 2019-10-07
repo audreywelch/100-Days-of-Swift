@@ -15,6 +15,10 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Whitehouse Petitions"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(showCredits))
+        
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -34,6 +38,16 @@ class ViewController: UITableViewController {
         }
         
         showError()
+    }
+    
+    @objc func showCredits() {
+        
+        let ac = UIAlertController(title: "Credits", message: "The information in this application is provided by the We The People API of the Whitehouse.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .cancel)
+        
+        ac.addAction(action)
+        present(ac, animated: true)
     }
     
     func parse(json: Data) {
