@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     var currentAnswer: UITextField!
     var scoreLabel: UILabel!
     var letterButtons = [UIButton]()
+    var activatedButtons = [UIButton]()
+    var solutions = [String]()
+    
+    var score = 0
+    var level = 1
     
     override func loadView() {
         view = UIView()
@@ -69,12 +74,6 @@ class ViewController: UIViewController {
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonsView)
-        
-        var activatedButtons = [UIButton]()
-        var solutions = [String]()
-        
-        var score = 0
-        var level = 1
         
         // AUTOLAYOUT
         
@@ -168,7 +167,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        loadLevel()
     }
     
     @objc func letterTapped(_ sender: UIButton) {
@@ -181,6 +181,60 @@ class ViewController: UIViewController {
     
     @objc func clearTapped(_ sender: UIButton) {
         
+    }
+    
+    func loadLevel() {
+        var clueString = ""
+        var solutionString = ""
+        var letterBits = [String]()
+        
+        // Find and load the level string from our app bundle
+        if let levelFileURL = Bundle.main.url(forResource: "level\(level)", withExtension: "txt") {
+            if let levelContents = try? String(contentsOf: levelFileURL) {
+                
+                // Split text into an array by breaking on the new line character
+                var lines = levelContents.components(separatedBy: "\n")
+                // Shuffle array so that the game is a little different each time
+                lines.shuffle()
+                
+                // Go through each item in the lines array, keeping track of where each item was in the array
+                // so that we can use it in our clue string
+                for (index, line) in lines.enumerated() {
+                    
+                    // Split each line by the semi colon, which separates the letter groups from its clue
+                    let parts = line.components(separatedBy: ": ")
+                    let answer = parts[0]
+                    let clue = parts[1]
+                    
+                    clueString += "\(index + 1). \(clue)\n"
+                    
+                    // Replace | with an empty string so the answers changes from "HA|UNT|ED" to "Haunted"
+                    let solutionWord = answer.replacingOccurrences(of: "|", with: "")
+                    // Use the count to get the length of string to add to our solution string
+                    solutionString += "\(solutionWord.count) letters\n"
+                    solutions.append(solutionWord)
+                    
+                    // Turn "HA|UNT|ED" into an array of three elements and add it to our letterBits array
+                    let bits = answer.components(separatedBy: "|")
+                    letterBits += bits
+                }
+            }
+        }
+        
+        // Configure buttons and labels
+        
+        // Removeswhitespaces and lines from start and end of the string
+        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        letterBits.shuffle()
+        
+        // Set titles of buttons
+        if letterBits.count == letterButtons.count {
+            for i in 0 ..< letterButtons.count {
+                letterButtons[i].setTitle(letterBits[i], for: .normal)
+            }
+        }
     }
 
 
