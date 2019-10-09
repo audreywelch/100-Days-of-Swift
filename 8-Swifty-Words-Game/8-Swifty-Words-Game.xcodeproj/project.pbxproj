@@ -13,6 +13,7 @@
 		840D313F234D119B00C3D376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840D313D234D119B00C3D376 /* Main.storyboard */; };
 		840D3141234D119D00C3D376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840D3140234D119D00C3D376 /* Assets.xcassets */; };
 		840D3144234D119D00C3D376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840D3142234D119D00C3D376 /* LaunchScreen.storyboard */; };
+		84D51726234D5A88004D9FC4 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84D51725234D5A88004D9FC4 /* level1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		840D3140234D119D00C3D376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		840D3143234D119D00C3D376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		840D3145234D119D00C3D376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D51725234D5A88004D9FC4 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				840D313B234D119B00C3D376 /* ViewController.swift */,
 				840D313D234D119B00C3D376 /* Main.storyboard */,
 				840D3140234D119D00C3D376 /* Assets.xcassets */,
+				84D51725234D5A88004D9FC4 /* level1.txt */,
 				840D3142234D119D00C3D376 /* LaunchScreen.storyboard */,
 				840D3145234D119D00C3D376 /* Info.plist */,
 			);
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				840D3144234D119D00C3D376 /* LaunchScreen.storyboard in Resources */,
+				84D51726234D5A88004D9FC4 /* level1.txt in Resources */,
 				840D3141234D119D00C3D376 /* Assets.xcassets in Resources */,
 				840D313F234D119B00C3D376 /* Main.storyboard in Resources */,
 			);

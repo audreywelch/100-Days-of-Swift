@@ -58,15 +58,23 @@ class ViewController: UIViewController {
         submit.translatesAutoresizingMaskIntoConstraints = false
         submit.setTitle("SUBMIT", for: .normal)
         view.addSubview(submit)
+        submit.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
         
         let clear = UIButton(type: .system)
         clear.translatesAutoresizingMaskIntoConstraints = false
         clear.setTitle("CLEAR", for: .normal)
         view.addSubview(clear)
+        clear.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
         
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonsView)
+        
+        var activatedButtons = [UIButton]()
+        var solutions = [String]()
+        
+        var score = 0
+        var level = 1
         
         // AUTOLAYOUT
         
@@ -151,6 +159,9 @@ class ViewController: UIViewController {
                 
                 // And also to our letterButtons array
                 letterButtons.append(letterButton)
+                
+                // All letter buttons call the letterTapped() function when tapped
+                letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
             }
         }
     }
@@ -158,6 +169,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func letterTapped(_ sender: UIButton) {
+        
+    }
+    
+    @objc func submitTapped(_ sender: UIButton) {
+        
+    }
+    
+    @objc func clearTapped(_ sender: UIButton) {
+        
     }
 
 
