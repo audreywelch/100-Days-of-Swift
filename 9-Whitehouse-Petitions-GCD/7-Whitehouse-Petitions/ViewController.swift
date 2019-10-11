@@ -31,12 +31,16 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        // Make sure the URL is valid
-        if let url = URL(string: urlString) {
-            // Create a new Data object using its contentsOf method to return the content from the URL
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
+        
+        // Move to a background queue
+        DispatchQueue.global(qos: .userInitiated).async {
+            // Make sure the URL is valid
+            if let url = URL(string: urlString) {
+                // Create a new Data object using its contentsOf method to return the content from the URL
+                if let data = try? Data(contentsOf: url) {
+                    self.parse(json: data)
+                    return
+                }
             }
         }
         
