@@ -22,6 +22,17 @@ class ViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(filterResults))
         
+
+        
+        performSelector(inBackground: #selector(fetchJSON), with: nil)
+        
+
+//
+//            self.showError()
+//        }
+    }
+    
+    @objc func fetchJSON() {
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -31,21 +42,40 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        
-        // Move to a background queue
-        DispatchQueue.global(qos: .userInitiated).async {
-            // Make sure the URL is valid
-            if let url = URL(string: urlString) {
-                // Create a new Data object using its contentsOf method to return the content from the URL
-                if let data = try? Data(contentsOf: url) {
-                    self.parse(json: data)
-                    return
-                }
+
+        // Make sure the URL is valid
+        if let url = URL(string: urlString) {
+            // Create a new Data object using its contentsOf method to return the content from the URL
+            if let data = try? Data(contentsOf: url) {
+                parse(json: data)
+                return
             }
+        }
+        
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
+    }
+    
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        
+        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
+            petitions = jsonPetitions.results
+            filteredPetitions = petitions
             
-            self.showError()
+            // Reload table view on the main thread
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        } else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
     }
+    
+    @objc func showError() {
+
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(ac, animated: true)
+    }
+    
     
     @objc func showCredits() {
         
@@ -90,29 +120,9 @@ class ViewController: UITableViewController {
         
     }
     
-    func parse(json: Data) {
-        let decoder = JSONDecoder()
-        
-        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            petitions = jsonPetitions.results
-            filteredPetitions = petitions
-            
-            // Reload table view on the main thread
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+
     
-    func showError() {
-        
-        // Make sure UI work is happening on the main thread
-        DispatchQueue.main.async {
-            let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(ac, animated: true)
-        }
-    }
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredPetitions.count
