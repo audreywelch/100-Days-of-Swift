@@ -22,14 +22,8 @@ class ViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(filterResults))
         
-
-        
         performSelector(inBackground: #selector(fetchJSON), with: nil)
         
-
-//
-//            self.showError()
-//        }
     }
     
     @objc func fetchJSON() {
