@@ -12,20 +12,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var guessButton: UIButton!
     @IBOutlet weak var incorrectGuessesRemainLabel: UILabel!
+    @IBOutlet weak var guessedLettersLabel: UILabel!
     @IBOutlet weak var wordStackView: UIStackView!
     
+    var stringedCharacter: String?
     var wordToGuess: [Character] = []
-    var promptWord: [Character] = [] {
+    var promptWord: [Character] = []
+    var guessedLetters: [Character] = [] {
         didSet {
-            if promptWord.count > 0 {
-                
-            }
+            guessedLettersLabel.text = String(guessedLetters)
             
-
         }
     }
-    var guessedLetters: [Character] = []
     var numberOfLetters = 0
+    
     var guessesRemaining = 7 {
         didSet {
             incorrectGuessesRemainLabel.text = "\(guessesRemaining)"

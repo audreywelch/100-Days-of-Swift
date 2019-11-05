@@ -31,7 +31,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Incorrect guesses remaining:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z53-08-cb5">
                                         <rect key="frame" x="0.0" y="0.0" width="299.5" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -43,22 +43,40 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guessed letters:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-zP-wkL">
+                                <rect key="frame" x="46" y="471.5" width="79.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-uZ-rxT">
+                                <rect key="frame" x="46" y="497" width="322" height="0.0"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SCF-tL-ExP" secondAttribute="trailing" constant="40" id="59n-fL-A2o"/>
+                            <constraint firstItem="3eJ-ee-OBI" firstAttribute="trailing" secondItem="6cM-uZ-rxT" secondAttribute="trailing" id="5qM-Ja-Xng"/>
                             <constraint firstItem="SCF-tL-ExP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Bnu-tu-8ak"/>
                             <constraint firstItem="SCF-tL-ExP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CaJ-2A-zzf"/>
+                            <constraint firstItem="6cM-uZ-rxT" firstAttribute="top" secondItem="WbK-zP-wkL" secondAttribute="bottom" constant="6" id="GSV-Au-aTY"/>
                             <constraint firstItem="SCF-tL-ExP" firstAttribute="trailing" secondItem="3eJ-ee-OBI" secondAttribute="trailing" constant="6" id="Jn6-Zq-H9J"/>
+                            <constraint firstItem="WbK-zP-wkL" firstAttribute="leading" secondItem="3eJ-ee-OBI" secondAttribute="leading" id="czt-oG-zAD"/>
                             <constraint firstItem="3eJ-ee-OBI" firstAttribute="top" secondItem="SCF-tL-ExP" secondAttribute="bottom" constant="20" id="fl4-Nb-b5g"/>
+                            <constraint firstItem="WbK-zP-wkL" firstAttribute="top" secondItem="3eJ-ee-OBI" secondAttribute="bottom" constant="12" id="kwi-uq-LGP"/>
                             <constraint firstItem="3eJ-ee-OBI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sra-GQ-4Ck"/>
                             <constraint firstItem="3eJ-ee-OBI" firstAttribute="leading" secondItem="SCF-tL-ExP" secondAttribute="leading" constant="6" id="tXr-zd-mXV"/>
+                            <constraint firstItem="6cM-uZ-rxT" firstAttribute="leading" secondItem="3eJ-ee-OBI" secondAttribute="leading" id="xmv-BE-Hof"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Hangman" id="fBw-m3-XoD"/>
                     <connections>
                         <outlet property="guessButton" destination="SCF-tL-ExP" id="Oog-96-uCs"/>
+                        <outlet property="guessedLettersLabel" destination="6cM-uZ-rxT" id="eYh-GG-LbT"/>
                         <outlet property="incorrectGuessesRemainLabel" destination="kvh-LQ-Hf3" id="9DH-St-qgb"/>
                     </connections>
                 </viewController>
