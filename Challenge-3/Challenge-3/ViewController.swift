@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var guessedLettersLabel: UILabel!
     @IBOutlet weak var wordStackView: UIStackView!
     
-    var stringedCharacter: String?
     var wordToGuess: [Character] = []
     var promptWord: [Character] = []
     var guessedLetters: [Character] = [] {
@@ -40,6 +39,9 @@ class ViewController: UIViewController {
 
         // Load words from start.txt file
         loadWord()
+        
+        // Right Bar Button Item for refresh
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startNewGame))
         
         // UI for Guess Button
         guessButton.layer.borderWidth = 0.25
@@ -82,8 +84,34 @@ class ViewController: UIViewController {
             
         ])
         
-
-
+    }
+    
+    @objc func startNewGame() {
+        
+        // Reset prompt word
+        promptWord = []
+        
+        // Load new word to wordToGuess
+        loadWord()
+        
+        // Reset number of guesses
+        guessesRemaining = 7
+        
+        // Reset letters that have been guessed
+        guessedLetters = []
+        
+        // Reset boxes to empty
+        for eachLetterIndex in 0..<promptWord.count {
+            letterLabelsArray[eachLetterIndex].text = "?"
+            DispatchQueue.main.async {
+                for eachLabel in self.letterLabelsArray {
+                    eachLabel.textColor = .black
+                    eachLabel.layer.borderColor = UIColor.black.cgColor
+                }
+                self.letterLabelsArray[eachLetterIndex].reloadInputViews()
+            }
+        }
+        
     }
     
     func loadWord() {
