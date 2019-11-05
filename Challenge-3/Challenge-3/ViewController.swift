@@ -22,11 +22,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Load words from start.txt file
         loadWord()
         
+        // UI for Guess Button
         guessButton.layer.borderWidth = 0.25
         guessButton.layer.borderColor = UIColor.black.cgColor
         
+        // Create a label for each letter in the word to be guessed
         for letter in wordToGuess {
             
             // Create a label within a stack view that has a "?"
@@ -95,6 +98,37 @@ class ViewController: UIViewController {
     }
 
     @IBAction func guessbuttonTapped(_ sender: Any) {
+        
+        let ac = UIAlertController(title: "Enter a letter to guess", message: nil, preferredStyle: .alert)
+        
+        // Add a single text field to the controller
+        ac.addTextField()
+        
+        let submitGuess = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] _ in
+            
+            // Read the value that was inserted into the text field
+            guard let guess = ac?.textFields?[0].text else { return }
+            
+            // Only allow users to guess one letter
+            if guess.count > 1 {
+                
+                // Show error message
+                let errorAC = UIAlertController(title: "Invalid Guess", message: "You can only guess one letter at a time. Try again.", preferredStyle: .alert)
+                errorAC.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(errorAC, animated: true)
+                
+            // Submit the user's guess
+            } else {
+                self?.submit(userGuess: Character(guess))
+            }
+        }
+        
+        ac.addAction(submitGuess)
+        present(ac, animated: true)
+    }
+    
+    func submit(userGuess: Character) {
+        
     }
     
 
