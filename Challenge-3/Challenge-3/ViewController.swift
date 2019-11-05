@@ -14,8 +14,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var incorrectGuessesRemainLabel: UILabel!
     @IBOutlet weak var wordStackView: UIStackView!
     
-    var wordToGuess = ""
+    var wordToGuess: [Character] = []
+    var promptWord: [Character] = [] {
+        didSet {
+            if promptWord.count > 0 {
+                
+            }
+            
+
+        }
+    }
+    var guessedLetters: [Character] = []
     var numberOfLetters = 0
+    var guessesRemaining = 7 {
+        didSet {
+            incorrectGuessesRemainLabel.text = "\(guessesRemaining)"
+            incorrectGuessesRemainLabel.reloadInputViews()
+        }
+    }
     
     var letterLabelsArray = [UILabel]()
     
@@ -83,12 +99,18 @@ class ViewController: UIViewController {
                 // Shuffle array so that the game is a little different each time
                 lines.shuffle()
                 
-                wordToGuess = lines[0]
+                // Add the first line/word to the wordToGuess character array
+                wordToGuess = Array(lines[0])
                 numberOfLetters = wordToGuess.count
                 
-
             }
         }
+        for _ in wordToGuess {
+            promptWord.append("?")
+        }
+        
+        print(wordToGuess)
+        print(promptWord)
     }
     
     func loadBlanks(word: String) {
@@ -127,7 +149,68 @@ class ViewController: UIViewController {
         present(ac, animated: true)
     }
     
-    func submit(userGuess: Character) {
+    func submit(userGuess: Character) -> [Character] {
+        
+        // If the letter has already been guessed
+        if guessedLetters.contains(userGuess) {
+            // Show an alert that the user already guessed that letter
+                
+                
+            // Do not decrease the number of guesses remaining
+            
+        // If the word does NOT contain the guess
+        } else if !wordToGuess.contains(userGuess) {
+            // Decrease the number of guesses remaining
+            guessesRemaining -= 1
+            
+        // If the word contains the guess
+        } else if wordToGuess.contains(userGuess) {
+                
+            // For all elements in the array
+            for eachLetterIndex in 0..<wordToGuess.count {
+                    
+                // Assign a variable for each character in the array
+                let eachLetter = wordToGuess[eachLetterIndex]
+                    
+                // Replace ?s with the matching letter
+                if eachLetter == userGuess {
+                    promptWord[eachLetterIndex] = eachLetter
+                    print(promptWord)
+                }
+            }
+            
+        }
+        
+        // Update labels
+        for eachLetterIndex in 0..<promptWord.count {
+            letterLabelsArray[eachLetterIndex].text = String(promptWord[eachLetterIndex])
+            DispatchQueue.main.async {
+                self.letterLabelsArray[eachLetterIndex].reloadInputViews()
+            }
+        }
+        
+        if guessesRemaining == 0 {
+ 
+            // Show Game Over Message
+            let gameOverAC = UIAlertController(title: "GAME OVER\nYou ran out of guesses", message: "Correct word was ` \(String(wordToGuess))`", preferredStyle: .alert)
+            gameOverAC.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(gameOverAC, animated: true)
+            
+            for eachLabel in letterLabelsArray {
+                if eachLabel.text == "?" {
+                    eachLabel.textColor = UIColor.red
+                    
+                }
+                
+                // Replace label population array with wordToGuess
+            }
+        }
+        
+        
+        // Add the guessed letter to the array of previously guessed letters
+        guessedLetters.append(userGuess)
+        
+        return promptWord
         
     }
     
