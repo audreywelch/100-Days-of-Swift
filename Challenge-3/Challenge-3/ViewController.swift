@@ -153,8 +153,11 @@ class ViewController: UIViewController {
         
         // If the letter has already been guessed
         if guessedLetters.contains(userGuess) {
+            
             // Show an alert that the user already guessed that letter
-                
+            let alreadyGuessedAC = UIAlertController(title: "You've already guessed that letter", message: nil, preferredStyle: .alert)
+            alreadyGuessedAC.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alreadyGuessedAC, animated: true)
                 
             // Do not decrease the number of guesses remaining
             
@@ -189,6 +192,7 @@ class ViewController: UIViewController {
             }
         }
         
+        // If user is out of guesses
         if guessesRemaining == 0 {
  
             // Show Game Over Message
@@ -204,6 +208,20 @@ class ViewController: UIViewController {
                 
                 // Replace label population array with wordToGuess
             }
+        }
+        
+        // If user has guessed the correct word
+        if promptWord == wordToGuess {
+            
+            let winAC = UIAlertController(title: "CONGRATULATIONS!", message: "You won!", preferredStyle: .alert)
+            winAC.addAction(UIAlertAction(title: "YAY!", style: .default))
+            self.present(winAC, animated: true)
+            
+            for eachLabel in letterLabelsArray {
+                eachLabel.textColor = #colorLiteral(red: 0.9921568627, green: 0.7555645778, blue: 0.6809829309, alpha: 1)
+                eachLabel.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            }
+            
         }
         
         
