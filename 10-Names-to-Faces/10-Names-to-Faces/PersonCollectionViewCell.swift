@@ -13,4 +13,6 @@ class PersonCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var name: UILabel!
     
+    static let reuseIdentifier = "PersonCell"
+    
 }
