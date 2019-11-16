@@ -10,6 +10,26 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var scoreLabel: SKLabelNode!
+    
+    var editLabel: SKLabelNode!
+    
+    var editingMode: Bool = false {
+        didSet {
+            if editingMode {
+                editLabel.text = "Done"
+            } else {
+                editLabel.text = "Edit"
+            }
+        }
+    }
+    
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
@@ -43,6 +63,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBouncer(at: CGPoint(x: 768, y: 0))
         makeBouncer(at: CGPoint(x: 1024, y: 0))
 
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: 0"
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.position = CGPoint(x: 980, y: 700)
+        addChild(scoreLabel)
+        
+        editLabel = SKLabelNode(fontNamed: "Chalkduster")
+        editLabel.text = "Edit"
+        editLabel.position = CGPoint(x: 80, y: 700)
+        addChild(editLabel)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,24 +84,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Use its locatation(in:) method to find where the screen was touched in relation to self
             let location = touch.location(in: self)
             
-            // Generate a node filled with an image
-            let ball = SKSpriteNode(imageNamed: "ballRed")
+            let objects = nodes(at: location)
             
-            // Add a physics body to the ball that is a circle half the size as the image
-            ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-            
-            ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
-            
-            // Bounciness level - 0 to 1
-            ball.physicsBody?.restitution = 0.4
-            
-            // Set the new ball's position to where the tap happened
-            ball.position = location
-            
-            ball.name = "ball"
-            
-            // Add to the scene
-            addChild(ball)
+            if objects.contains(editLabel) {
+                editingMode.toggle()
+                
+            } else {
+                
+                if editingMode {
+                    // Create a box
+                    
+                    let size = CGSize(width: Int.random(in: 16...128), height: 16)
+                    let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
+                    box.zRotation = CGFloat.random(in: 0...3)
+                    box.position = location
+                    
+                    box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+                    box.physicsBody?.isDynamic = false
+                    
+                    addChild(box)
+                    
+                } else {
+                    // Create a ball
+                    
+                    // Generate a node filled with an image
+                    let ball = SKSpriteNode(imageNamed: "ballRed")
+                    
+                    // Add a physics body to the ball that is a circle half the size as the image
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    
+                    ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+                    
+                    // Bounciness level - 0 to 1
+                    ball.physicsBody?.restitution = 0.4
+                    
+                    // Set the new ball's position to where the tap happened
+                    ball.position = location
+                    
+                    ball.name = "ball"
+                    
+                    // Add to the scene
+                    addChild(ball)
+                }
+                
+            }
         }
     }
     
@@ -124,8 +181,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if object.name == "good" {
             destroy(ball: ball)
+            score += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
+            score -= 1
         }
     }
     
