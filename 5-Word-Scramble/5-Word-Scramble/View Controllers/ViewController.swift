@@ -14,6 +14,7 @@ class TableViewController: UITableViewController {
     
     var allWords: [String] = []
     var usedWords: [String] = []
+    var submissions: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,14 @@ class TableViewController: UITableViewController {
     }
 
     @objc func startGame() {
+//        let defaults = UserDefaults.standard
+//
+//        if defaults.object(forKey: "Submissions") as? [String] != nil {
+//            submissions = defaults.object(forKey: "Submissions") as! [String]
+//
+//            let currentWord = defaults.object(forKey: "CurrentWord") as? String ?? ""
+//        }
+        
         title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
@@ -82,6 +91,9 @@ class TableViewController: UITableViewController {
                 if isReal(word: lowerAnswer) {
                     usedWords.insert(lowerAnswer, at: 0)
                     
+                    // Save answer to user defaults
+                    save(lowerAnswer)
+                    
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
                     
@@ -97,6 +109,18 @@ class TableViewController: UITableViewController {
             
             showErrorMessage(errorTitle: "Word not possible", errorMessage: "You can't spell that word from \(title).")
         }
+    }
+    
+    func save(_ submittedAnswer: String) {
+        
+        // Add the submission to the array of previously submitted answers
+        submissions.append(submittedAnswer)
+        
+        // Save the submissions array to User Defaults
+        let defaults = UserDefaults.standard
+        defaults.set(submissions, forKey: "Submissions")
+        defaults.set(title?.lowercased(), forKey: "CurrentWord")
+        
     }
     
     func showErrorMessage(errorTitle: String, errorMessage: String) {
