@@ -86,16 +86,44 @@ class ViewController: UIViewController {
             let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
             present(ac, animated: true)
-        } else if numberOfQuestionsAsked == 10 {
-            let ac = UIAlertController(title: "Game Complete", message: "Final Score: \(score)", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Play again!", style: .default, handler: askQuestion))
-            present(ac, animated: true)
             
-            score = 0
-            numberOfQuestionsAsked = 0
+        } else if numberOfQuestionsAsked == 10 {
+            let defaults = UserDefaults.standard
+            
+            if score > defaults.integer(forKey: "HighScore") {
+                let ac = UIAlertController(title: "Game Complete", message: "CONGRATULATIONS! You beat your highest score of \(defaults.integer(forKey: "HighScore")). Final Score: \(score).", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Play again!", style: .default, handler: askQuestion))
+                present(ac, animated: true)
+                
+                save()
+                
+                score = 0
+                numberOfQuestionsAsked = 0
+            } else {
+                let ac = UIAlertController(title: "Game Complete", message: "Final Score: \(score)", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Play again!", style: .default, handler: askQuestion))
+                present(ac, animated: true)
+                
+                save()
+                
+                score = 0
+                numberOfQuestionsAsked = 0
+            }
+            
+            
         }
         
         numberOfQuestionsAsked += 1
+        
+    }
+    
+    func save() {
+        
+        let defaults = UserDefaults.standard
+        
+        if score > defaults.integer(forKey: "HighScore") {
+            defaults.set(score, forKey: "HighScore")
+        }
         
     }
     
