@@ -8,7 +8,9 @@
 
 import UIKit
 
-class Person: NSObject {
+// When only writing Swift, the Codable protocol is much easier when using UserDefaults
+
+class Person: NSObject, Codable {
     var name: String
     var image: String
     

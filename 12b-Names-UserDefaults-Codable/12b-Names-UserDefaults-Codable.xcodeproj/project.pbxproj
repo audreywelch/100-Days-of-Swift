@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		841E6F932385B78B00497D55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 841E6F922385B78B00497D55 /* Default-568h@2x.png */; };
 		8428DBC52375EB2B00DBB69C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428DBC42375EB2B00DBB69C /* AppDelegate.swift */; };
 		8428DBC72375EB2B00DBB69C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428DBC62375EB2B00DBB69C /* SceneDelegate.swift */; };
 		8428DBC92375EB2B00DBB69C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428DBC82375EB2B00DBB69C /* ViewController.swift */; };
@@ -19,8 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		841E6F922385B78B00497D55 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8428DBC12375EB2B00DBB69C /* 12a-Names-to-Faces-UserDefaults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "12a-Names-to-Faces-UserDefaults.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8428DBC12375EB2B00DBB69C /* 12b-Names-UserDefaults-Codable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "12b-Names-UserDefaults-Codable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8428DBC42375EB2B00DBB69C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8428DBC62375EB2B00DBB69C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8428DBC82375EB2B00DBB69C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +44,6 @@
 		8428DBB82375EB2B00DBB69C = {
 			isa = PBXGroup;
 			children = (
-				841E6F922385B78B00497D55 /* Default-568h@2x.png */,
 				8428DBC32375EB2B00DBB69C /* 10-Names-to-Faces */,
 				8428DBC22375EB2B00DBB69C /* Products */,
 			);
@@ -55,7 +52,7 @@
 		8428DBC22375EB2B00DBB69C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8428DBC12375EB2B00DBB69C /* 12a-Names-to-Faces-UserDefaults.app */,
+				8428DBC12375EB2B00DBB69C /* 12b-Names-UserDefaults-Codable.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8428DBC02375EB2B00DBB69C /* 12a-Names-to-Faces-UserDefaults */ = {
+		8428DBC02375EB2B00DBB69C /* 12b-Names-UserDefaults-Codable */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8428DBD52375EB2D00DBB69C /* Build configuration list for PBXNativeTarget "12a-Names-to-Faces-UserDefaults" */;
+			buildConfigurationList = 8428DBD52375EB2D00DBB69C /* Build configuration list for PBXNativeTarget "12b-Names-UserDefaults-Codable" */;
 			buildPhases = (
 				8428DBBD2375EB2B00DBB69C /* Sources */,
 				8428DBBE2375EB2B00DBB69C /* Frameworks */,
@@ -91,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = "12a-Names-to-Faces-UserDefaults";
+			name = "12b-Names-UserDefaults-Codable";
 			productName = "10-Names-to-Faces";
-			productReference = 8428DBC12375EB2B00DBB69C /* 12a-Names-to-Faces-UserDefaults.app */;
+			productReference = 8428DBC12375EB2B00DBB69C /* 12b-Names-UserDefaults-Codable.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8428DBBC2375EB2B00DBB69C /* Build configuration list for PBXProject "12a-Names-to-Faces-UserDefaults" */;
+			buildConfigurationList = 8428DBBC2375EB2B00DBB69C /* Build configuration list for PBXProject "12b-Names-UserDefaults-Codable" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8428DBC02375EB2B00DBB69C /* 12a-Names-to-Faces-UserDefaults */,
+				8428DBC02375EB2B00DBB69C /* 12b-Names-UserDefaults-Codable */,
 			);
 		};
 /* End PBXProject section */
@@ -135,7 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8428DBD12375EB2D00DBB69C /* LaunchScreen.storyboard in Resources */,
-				841E6F932385B78B00497D55 /* Default-568h@2x.png in Resources */,
 				8428DBCE2375EB2D00DBB69C /* Assets.xcassets in Resources */,
 				8428DBCC2375EB2B00DBB69C /* Main.storyboard in Resources */,
 			);
@@ -331,7 +327,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8428DBBC2375EB2B00DBB69C /* Build configuration list for PBXProject "12a-Names-to-Faces-UserDefaults" */ = {
+		8428DBBC2375EB2B00DBB69C /* Build configuration list for PBXProject "12b-Names-UserDefaults-Codable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8428DBD32375EB2D00DBB69C /* Debug */,
@@ -340,7 +336,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8428DBD52375EB2D00DBB69C /* Build configuration list for PBXNativeTarget "12a-Names-to-Faces-UserDefaults" */ = {
+		8428DBD52375EB2D00DBB69C /* Build configuration list for PBXNativeTarget "12b-Names-UserDefaults-Codable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8428DBD62375EB2D00DBB69C /* Debug */,
