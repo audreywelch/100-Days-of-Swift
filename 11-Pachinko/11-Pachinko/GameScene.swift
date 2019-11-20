@@ -105,10 +105,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(box)
                     
                 } else {
-                    // Create a ball
                     
-                    // Generate a node filled with an image
-                    let ball = SKSpriteNode(imageNamed: "ballRed")
+                    // Create a ball
+                    let ballArray = ["ballRed", "ballBlue", "ballYellow", "ballPurple", "ballGrey", "ballCyan", "ballGreen"]
+                    
+                    // Generate a node filled with an image or a random color
+                    //let ball = SKSpriteNode(imageNamed: "ballRed")
+                    let ball = SKSpriteNode(imageNamed: ballArray[Int.random(in: 0..<ballArray.count)])
                     
                     // Add a physics body to the ball that is a circle half the size as the image
                     ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
