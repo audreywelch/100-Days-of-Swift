@@ -8,12 +8,12 @@
 
 import UIKit
 
-class Person: NSObject, Codable {
-    var name: String
+class Photo: NSObject, Codable {
+    var caption: String
     var image: String
     
-    init(name: String, image: String) {
-        self.name = name
+    init(caption: String, image: String) {
+        self.caption = caption
         self.image = image
     }
 }
