@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8429F43C238C9A5C00BFA4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429F43B238C9A5C00BFA4D3 /* DetailViewController.swift */; };
 		84F788E623887096002D414C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F788E523887096002D414C /* AppDelegate.swift */; };
 		84F788E823887096002D414C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F788E723887096002D414C /* SceneDelegate.swift */; };
 		84F788EA23887096002D414C /* CaptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F788E923887096002D414C /* CaptionTableViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8429F43B238C9A5C00BFA4D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		84F788E223887096002D414C /* Challenge-4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Challenge-4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F788E523887096002D414C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F788E723887096002D414C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +62,9 @@
 			children = (
 				84F788E523887096002D414C /* AppDelegate.swift */,
 				84F788E723887096002D414C /* SceneDelegate.swift */,
-				84F788E923887096002D414C /* CaptionTableViewController.swift */,
 				84F788F923887260002D414C /* Photo.swift */,
+				84F788E923887096002D414C /* CaptionTableViewController.swift */,
+				8429F43B238C9A5C00BFA4D3 /* DetailViewController.swift */,
 				84F788EB23887096002D414C /* Main.storyboard */,
 				84F788EE23887097002D414C /* Assets.xcassets */,
 				84F788F023887097002D414C /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				84F788FA23887260002D414C /* Photo.swift in Sources */,
 				84F788EA23887096002D414C /* CaptionTableViewController.swift in Sources */,
+				8429F43C238C9A5C00BFA4D3 /* DetailViewController.swift in Sources */,
 				84F788E623887096002D414C /* AppDelegate.swift in Sources */,
 				84F788E823887096002D414C /* SceneDelegate.swift in Sources */,
 			);

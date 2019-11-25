@@ -131,6 +131,8 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             print("Failed to save people.")
         }
     }
+    
+
 
 
 }
