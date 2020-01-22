@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -16,6 +17,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var currentImage: UIImage!
     
+    // Core Image component that handles rendering
+    var context: CIContext!
+    
+    // Stores whatever filter the user has activated
+    var currentFilter: CIFilter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +30,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         title = "InstaFilter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
         
+        context = CIContext()
+        currentFilter = CIFilter(name: "CISepiaTone")
     }
     
     @objc func importPicture() {
@@ -41,6 +50,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true)
         
         currentImage = image
+        
+        let beginImage = CIImage(image: currentImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        
+        applyProcessing()
     }
 
     @IBAction func changeFilter(_ sender: Any) {
@@ -52,9 +66,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
+        applyProcessing()
     }
     
-    
+    func applyProcessing() {
+        
+        // Safely read the output image from our current filter
+        guard let image = currentFilter.outputImage else { return }
+        
+        // Use the value of our intensity slider to set the kCIInputIntensityKey value
+        // of current Core Image filter
+        currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey)
+        
+        // Create a new data type called CGImage from the output image of the current filter,
+        // filtering all of the image (the entire extent)
+        // Returns an optional CGImage
+        if let cgimg = context.createCGImage(image, from: image.extent) {
+            
+            // Create a new UIImage from the CGImage
+            let processedImage = UIImage(cgImage: cgimg)
+            
+            // Assign that UIImage to the image view
+            imageView.image = processedImage
+        }
+        
+    }
     
 }
 
